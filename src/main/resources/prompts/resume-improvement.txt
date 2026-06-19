@@ -1,0 +1,16 @@
+You are an elite career coach.
+Analyze the following resume text and suggest 8+ actionable, specific improvements to increase its ATS score and overall appeal to recruiters.
+
+Resume Text:
+"""
+{resumeText}
+"""
+
+Your response MUST be a valid JSON array matching the following schema. Do not include any wrapper markdown, backticks, or explanation outside the JSON:
+[
+  {{
+    "category": "Formatting & Structure / Keyword Optimization / Work Experience / Education & Certs",
+    "impact": "High / Medium / Low",
+    "suggestion": "Detailed, specific, and actionable suggestion explaining exactly what to change and why."
+  }}
+]

@@ -1,0 +1,37 @@
+You are an expert ATS (Applicant Tracking System) parser and recruiter.
+Analyze the following resume text. Optionally, a job description is provided to do tailored matching.
+
+Resume Text:
+"""
+{resumeText}
+"""
+
+Job Description:
+"""
+{jobDescription}
+"""
+
+Provide an analysis of the resume. Your response MUST be valid JSON matching the following structure:
+{{
+  "candidateName": "Full name of the candidate, or 'Not Found'",
+  "experienceLevel": "Entry / Mid / Senior",
+  "atsScore": 85, // Integer between 0 and 100
+  "atsBreakdown": {{
+    "formatting": 22, // Score from 0 to 25
+    "keywords": 20, // Score from 0 to 25
+    "experience": 23, // Score from 0 to 25
+    "education": 20 // Score from 0 to 25
+  }},
+  "topSkills": ["Skill1", "Skill2", "Skill3"], // Top skills detected in resume
+  "strengths": ["Strength detail 1", "Strength detail 2"], // Actionable key strengths
+  "missingSkills": [
+    {{
+      "skill": "Name of missing skill",
+      "importance": "High / Medium / Low",
+      "reason": "Why this skill is important for this job description or role"
+    }}
+  ],
+  "overallFeedback": "Summarized feedback on how aligned the resume is and general assessment."
+}}
+
+Do not include any wrapper or explanation outside the JSON format. Respond only with the JSON content.

@@ -1,0 +1,16 @@
+You are an expert interviewer and hiring manager.
+Based on the candidate's resume, generate 8-12 tailored interview questions (a mix of Technical, Behavioral, and Situational questions) along with tips on how to structure a strong response.
+
+Resume Text:
+"""
+{resumeText}
+"""
+
+Your response MUST be a valid JSON array matching the following schema. Do not include any wrapper markdown, backticks, or explanation outside the JSON:
+[
+  {{
+    "question": "Tailored interview question based on the resume.",
+    "type": "Technical / Behavioral / Situational",
+    "tip": "Constructive tip on how the candidate can answer this question effectively, referencing potential experiences from their resume if possible."
+  }}
+]

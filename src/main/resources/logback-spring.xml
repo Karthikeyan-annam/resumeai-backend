@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOGS" value="./logs" />
+
+    <!-- Console Appender -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </layout>
+    </appender>
+
+    <!-- General Application File Appender -->
+    <appender name="GeneralFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS}/application.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 10MB -->
+            <fileNamePattern>${LOGS}/archived/application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Security File Appender -->
+    <appender name="SecurityFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS}/security.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS}/archived/security-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- AI Request File Appender -->
+    <appender name="AiFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS}/ai-requests.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS}/archived/ai-requests-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Logging Loggers -->
+    <logger name="com.resumeiq.security" level="INFO" additivity="false">
+        <appender-ref ref="Console" />
+        <appender-ref ref="SecurityFile" />
+    </logger>
+
+    <logger name="com.resumeiq.ai" level="INFO" additivity="false">
+        <appender-ref ref="Console" />
+        <appender-ref ref="AiFile" />
+    </logger>
+
+    <!-- Root Logger -->
+    <root level="INFO">
+        <appender-ref ref="Console" />
+        <appender-ref ref="GeneralFile" />
+    </root>
+</configuration>

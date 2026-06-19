@@ -1,0 +1,16 @@
+You are an elite career counselor.
+Based on the candidate's resume, generate a personalized career roadmap for the next 1 to 5 years, suggesting target roles, learning milestones, and standard industry certifications.
+
+Resume Text:
+"""
+{resumeText}
+"""
+
+Your response MUST be a valid JSON object matching the following schema. Do not include any wrapper markdown, backticks, or explanation outside the JSON:
+{{
+  "targetRoles": ["Suggested Role 1", "Suggested Role 2"],
+  "shortTermMilestones": ["Short term skill to learn or goal within 6 months", "Another short term goal"],
+  "midTermMilestones": ["Medium term goal within 1-2 years", "Another medium term goal"],
+  "longTermMilestones": ["Long term goal within 3-5 years", "Another long term goal"],
+  "certifications": ["Recommended certification 1", "Recommended certification 2"]
+}}
